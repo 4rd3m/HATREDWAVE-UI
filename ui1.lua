@@ -907,7 +907,7 @@ local Library do
         for Property, Value in ThemeData.Properties do
             if type(Value) == "string" then
                 if Item:IsA("UIGradient") and Property == "Color" then
-                    Item.Color = ColorSequence.new({
+                    Item[Property] = ColorSequence.new({
                         ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
                         ColorSequenceKeypoint.new(0.5, self.Theme[Value]),
                         ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
@@ -1107,7 +1107,7 @@ local Library do
             for Property, Value in Item.Properties do
                 if type(Value) == "string" and Value == Theme then
                     if Item.Item:IsA("UIGradient") and Property == "Color" then
-                        Item.Item.Color = ColorSequence.new({
+                        Item.Item[Property] = ColorSequence.new({
                             ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
                             ColorSequenceKeypoint.new(0.5, Color),
                             ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255))
@@ -4293,7 +4293,7 @@ local Library do
         }
 
         local Items = Components.Window({
-            Position = UDim2New(0.5, 0, 0.5, 0),
+            Position = UDim2New(0.5, -(Window.Size.X.Offset / 2), 0.5, -(Window.Size.Y.Offset / 2)),
             Size = Window.Size,
             Parent = self.Holder,
             Draggable = true
